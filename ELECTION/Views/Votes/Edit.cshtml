@@ -1,0 +1,49 @@
+﻿@model ELECTION.Models.Vote
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Vote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VoteID" />
+            <div class="form-group">
+                <label asp-for="ElecteurID" class="control-label"></label>
+                <select asp-for="ElecteurID" class="form-control" asp-items="ViewBag.ElecteurID"></select>
+                <span asp-validation-for="ElecteurID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CandidatID" class="control-label"></label>
+                <select asp-for="CandidatID" class="form-control" asp-items="ViewBag.CandidatID"></select>
+                <span asp-validation-for="CandidatID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BureauID" class="control-label"></label>
+                <input asp-for="BureauID" class="form-control" />
+                <span asp-validation-for="BureauID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateVote" class="control-label"></label>
+                <input asp-for="DateVote" class="form-control" />
+                <span asp-validation-for="DateVote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
