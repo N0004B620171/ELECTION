@@ -4,3 +4,73 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+<div id="map"></div>
+<script>
+
+    var map = L.map('map').setView([14.5, -14.5], 7);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    L.marker([14.7167, -17.4677]).addTo(map) // Coordonnées du marqueur
+        .bindPopup('Sénégal') // Contenu du popup
+        .openPopup();
+
+    const icon = L.icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        shadowSize: [41, 41]
+    });
+
+    const markerThies = L.marker([14.86667, -16.86667], { icon }).bindPopup('<h1>Thies</h1> PASTEF 186</br> BBY  81</br>PDS </br>REWMI 90</br>AAR SENEGAL 21');
+    markerThies.addTo(map);
+
+    const markerDakar = L.marker([14.76667, -17.28333], { icon }).bindPopup('<h1>Dakar</h1> PASTEF 264</br> BBY  100</br>PDS </br>REWMI 30</br>AAR SENEGAL 11');
+    markerDakar.addTo(map);
+
+    const markerKaolack = L.marker([14.0, -16.0], { icon }).bindPopup('<h1>Kaolack</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerKaolack.addTo(map);
+
+    const markerKolda = L.marker([13.0, -14.41667], { icon }).bindPopup('<h1>Kolda</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerKolda.addTo(map);
+
+    const markerLouga = L.marker([15.41667, -15.5], { icon }).bindPopup('<h1>Louga</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerLouga.addTo(map);
+
+    const markerKedougou = L.marker([12.55146, -12.17586], { icon }).bindPopup('<h1>Kedougou</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerKedougou.addTo(map);
+
+    const markerKaffrine = L.marker([14.10528, -15.54565], { icon }).bindPopup('<h1>Kafrine</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerKaffrine.addTo(map);
+
+    const markerFatick = L.marker([14.28333, -16.5], { icon }).bindPopup('<h1>Fatick</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerFatick.addTo(map);
+
+    const markerDiourbel = L.marker([14.76667, -16.1], { icon }).bindPopup('<h1>Diourbel</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerDiourbel.addTo(map);
+
+    const markerMatam = L.marker([15.16667, -13.66667], { icon }).bindPopup('<h1>Matam</h1> PASTEF 124</br> BBY  224</br>PDS 20</br>REWMI 10</br>AAR SENEGAL 5');
+    markerMatam.addTo(map);
+
+    const markerSedhiou = L.marker([12.70683, -15.55801], { icon }).bindPopup('<h1>Sedhiou</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0 ');
+    markerSedhiou.addTo(map);
+
+    const markerSaintLouis = L.marker([16.33333, -15.0], { icon }).bindPopup('<h1>Saint Louis</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0 ');
+    markerSaintLouis.addTo(map);
+
+    const markerTamba = L.marker([13.91667, -13.25], { icon }).bindPopup('<h1>Tamba</h1> PASTEF 0</br> BBY  0</br>PDS 0</br>REWMI 0</br>AAR SENEGAL 0');
+    markerTamba.addTo(map);
+
+    const markerZig = L.marker([12.8, -16.36667], { icon }).bindPopup('<h1>Ziguinchor</h1> PASTEF 18</br> BBY  9</br>PDS 7</br>REWMI 5</br>AAR SENEGAL 2');
+    markerZig.addTo(map);
+
+    // Afficher tous les popups en même temps
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.Marker) {
+            layer.openPopup();
+        }
+    });
+</script>
