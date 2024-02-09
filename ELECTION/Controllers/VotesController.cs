@@ -22,7 +22,7 @@ namespace ELECTION.Controllers
         // GET: Votes
         public async Task<IActionResult> Index()
         {
-            var eLECTIONContext = _context.Vote.Include(v => v.Candidat).Include(v => v.Electeur);
+            var eLECTIONContext = _context.Vote.Include(v => v.BureauDeVote).Include(v => v.Candidat).Include(v => v.Electeur);
             return View(await eLECTIONContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace ELECTION.Controllers
             }
 
             var vote = await _context.Vote
+                .Include(v => v.BureauDeVote)
                 .Include(v => v.Candidat)
                 .Include(v => v.Electeur)
                 .FirstOrDefaultAsync(m => m.VoteID == id);
@@ -49,6 +50,7 @@ namespace ELECTION.Controllers
         // GET: Votes/Create
         public IActionResult Create()
         {
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID");
             ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID");
             ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID");
             return View();
@@ -59,14 +61,15 @@ namespace ELECTION.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VoteID,ElecteurID,CandidatID,BureauID,DateVote")] Vote vote)
+        public async Task<IActionResult> Create([Bind("VoteID,ElecteurID,CandidatID,BureauDeVoteID,DateVote")] Vote vote)
         {
-            if (ModelState.IsValid)
+          //  if (ModelState.IsValid)
             {
                 _context.Add(vote);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
             ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
             ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
             return View(vote);
@@ -85,6 +88,7 @@ namespace ELECTION.Controllers
             {
                 return NotFound();
             }
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
             ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
             ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
             return View(vote);
@@ -95,7 +99,7 @@ namespace ELECTION.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VoteID,ElecteurID,CandidatID,BureauID,DateVote")] Vote vote)
+        public async Task<IActionResult> Edit(int id, [Bind("VoteID,ElecteurID,CandidatID,BureauDeVoteID,DateVote")] Vote vote)
         {
             if (id != vote.VoteID)
             {
@@ -122,6 +126,7 @@ namespace ELECTION.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
             ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
             ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
             return View(vote);
@@ -136,6 +141,7 @@ namespace ELECTION.Controllers
             }
 
             var vote = await _context.Vote
+                .Include(v => v.BureauDeVote)
                 .Include(v => v.Candidat)
                 .Include(v => v.Electeur)
                 .FirstOrDefaultAsync(m => m.VoteID == id);

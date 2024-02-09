@@ -1,16 +1,19 @@
 using ELECTION.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using ELECTION.Data;
+using Microsoft.EntityFrameworkCore;
 namespace ELECTION.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ELECTIONContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ELECTIONContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -18,9 +21,10 @@ namespace ELECTION.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var eLECTIONContext = _context.Vote.Include(v => v.BureauDeVote).Include(v => v.Candidat).Include(v => v.Electeur);
+            return View(await eLECTIONContext.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

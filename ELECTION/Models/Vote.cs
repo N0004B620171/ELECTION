@@ -4,10 +4,11 @@ namespace ELECTION.Models
 {
     public class Vote
     {
+        [Key]
         public int VoteID { get; set; }
         public int ElecteurID { get; set; }
         public int CandidatID { get; set; }
-        public int BureauID { get; set; }
+        public int BureauDeVoteID { get; set; }
         public DateTime DateVote { get; set; }
         // Autres propriétés pertinentes
 
