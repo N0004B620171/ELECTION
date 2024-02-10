@@ -48,7 +48,7 @@ namespace ELECTION.Controllers
         // GET: BureauDeVotes/Create
         public IActionResult Create()
         {
-            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "RegionID");
+            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "NomRegion");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace ELECTION.Controllers
             {
                 return NotFound();
             }
-            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "RegionID", bureauDeVote.RegionID);
+            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "NomRegion", bureauDeVote.RegionID);
             return View(bureauDeVote);
         }
 
@@ -118,7 +118,7 @@ namespace ELECTION.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "RegionID", bureauDeVote.RegionID);
+            ViewData["RegionID"] = new SelectList(_context.Region, "RegionID", "NomRegion", bureauDeVote.RegionID);
             return View(bureauDeVote);
         }
 

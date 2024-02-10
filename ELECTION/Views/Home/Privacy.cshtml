@@ -1,64 +1,15 @@
-﻿@model IEnumerable<ELECTION.Models.Vote>
+﻿@model List<ResultatParRegionViewModel>
+
 
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Résultats par Région";
 }
-
-
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateVote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Electeur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Candidat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BureauDeVote)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateVote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Electeur.ElecteurID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Candidat.CandidatID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BureauDeVote.BureauID)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.VoteID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.VoteID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.VoteID">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<p>Résultats par Région
+.</p>
 <div id="map"></div>
 <script>
 

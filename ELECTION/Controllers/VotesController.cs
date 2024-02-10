@@ -50,9 +50,9 @@ namespace ELECTION.Controllers
         // GET: Votes/Create
         public IActionResult Create()
         {
-            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID");
-            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID");
-            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID");
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "Emplacement");
+            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "Nom");
+            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "Nom");
             return View();
         }
 
@@ -68,10 +68,11 @@ namespace ELECTION.Controllers
                 _context.Add(vote);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
-            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
-            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
-            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "Emplacement", vote.BureauDeVoteID);
+            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "Nom", vote.CandidatID);
+            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "Nom", vote.ElecteurID);
             return View(vote);
         }
 
@@ -88,9 +89,9 @@ namespace ELECTION.Controllers
             {
                 return NotFound();
             }
-            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
-            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
-            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "Emplacement", vote.BureauDeVoteID);
+            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "Nom", vote.CandidatID);
+            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "Nom", vote.ElecteurID);
             return View(vote);
         }
 
@@ -126,9 +127,9 @@ namespace ELECTION.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "BureauID", vote.BureauDeVoteID);
-            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "CandidatID", vote.CandidatID);
-            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "ElecteurID", vote.ElecteurID);
+            ViewData["BureauDeVoteID"] = new SelectList(_context.BureauDeVote, "BureauID", "Emplacement", vote.BureauDeVoteID);
+            ViewData["CandidatID"] = new SelectList(_context.Candidat, "CandidatID", "Nom", vote.CandidatID);
+            ViewData["ElecteurID"] = new SelectList(_context.Electeur, "ElecteurID", "Nom", vote.ElecteurID);
             return View(vote);
         }
 

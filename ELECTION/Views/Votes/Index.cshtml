@@ -34,13 +34,13 @@
                 @Html.DisplayFor(modelItem => item.DateVote)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Electeur.ElecteurID)
+                    @Html.DisplayFor(modelItem => item.Electeur.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Candidat.CandidatID)
+                @Html.DisplayFor(modelItem => item.Candidat.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BureauDeVote.BureauID)
+                    @Html.DisplayFor(modelItem => item.BureauDeVote.Emplacement)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.VoteID">Edit</a> |
